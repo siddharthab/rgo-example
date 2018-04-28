@@ -1,0 +1,10 @@
+Package: rgo
+Version: 1.0
+Title: Example Go code linkage in R.
+Authors@R: c(person("Siddhartha", "Bagaria", role = c("aut", "cre"),
+                    email="sbagaria@grailbio.com"))
+Description: A hello world example of how to use go code in R.
+NeedsCompilation: yes
+License: GPL-3
+Depends: R (>= 3.4.0)
+RoxygenNote: 6.0.1

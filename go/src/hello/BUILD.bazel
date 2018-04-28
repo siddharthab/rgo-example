@@ -1,0 +1,38 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "hello.go",
+        "main.go",
+    ],
+    cgo = True,
+    importpath = "github.com/example/project/go/src/hello",
+    visibility = ["//visibility:private"],
+)
+
+go_binary(
+    name = "hello",
+    embed = [":go_default_library"],
+    linkmode = "c-archive",
+    visibility = ["//visibility:public"],
+)
+
+genrule(
+    name = "go_build",
+    srcs = [
+        "hello.go",
+        "main.go",
+    ],
+    outs = [
+        "lib/hello.a",
+        "include/hello.h",
+    ],
+    cmd = """
+set -e
+( cd go/src/hello && go build -buildmode c-archive )
+mv go/src/hello/hello.a $(location lib/hello.a)
+mv go/src/hello/hello.h $(location include/hello.h)
+    """,
+    visibility = ["//visibility:public"],
+)

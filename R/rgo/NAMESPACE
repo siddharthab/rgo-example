@@ -1,0 +1,3 @@
+useDynLib(rgo, .registration = TRUE, .fixes = "C_")
+
+export(hello)

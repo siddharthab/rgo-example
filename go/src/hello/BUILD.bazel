@@ -17,22 +17,3 @@ go_binary(
     linkmode = "c-archive",
     visibility = ["//visibility:public"],
 )
-
-genrule(
-    name = "go_build",
-    srcs = [
-        "hello.go",
-        "main.go",
-    ],
-    outs = [
-        "lib/hello.a",
-        "include/hello.h",
-    ],
-    cmd = """
-set -e
-( cd go/src/hello && go build -buildmode c-archive )
-mv go/src/hello/hello.a $(location lib/hello.a)
-mv go/src/hello/hello.h $(location include/hello.h)
-    """,
-    visibility = ["//visibility:public"],
-)

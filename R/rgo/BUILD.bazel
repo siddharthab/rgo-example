@@ -1,4 +1,4 @@
-load("@com_grail_rules_r//R:defs.bzl", "r_pkg")
+load("@com_grail_rules_r//R:defs.bzl", "r_library", "r_pkg")
 
 r_pkg(
     name = "rgo",
@@ -7,21 +7,11 @@ r_pkg(
         exclude = ["BUILD.bazel"],
     ),
     cc_deps = [
-        #### EDIT HERE ####
-        # Choose which kind of dependency you want.
-        #":go_build_archive",
-        ":rules_go_archive",
+        "//go/src/hello:hello.cc",
     ],
 )
 
-cc_import(
-    name = "go_build_archive",
-    hdrs = ["//go/src/hello:include/hello.h"],
-    static_library = "//go/src/hello:lib/hello.a",
-)
-
-cc_library(
-    name = "rules_go_archive",
-    hdrs = ["//go/src/hello:include/hello.h"],  # To keep the header path consistent in src/hello.c.
-    deps = ["//go/src/hello:hello.cc"],
+r_library(
+    name = "library",
+    pkgs = ["rgo"],
 )

@@ -1,5 +1,3 @@
-#include "go/src/hello/include/hello.h"
+#include "go/src/hello/hello.h"
 
-void C_hello() {
-  hello();
-}
+void C_hello() { hello(); }

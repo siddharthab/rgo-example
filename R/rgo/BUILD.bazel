@@ -9,8 +9,8 @@ r_pkg(
     cc_deps = [
         #### EDIT HERE ####
         # Choose which kind of dependency you want.
-        ":go_build_archive",
-        #":rules_go_archive",
+        #":go_build_archive",
+        ":rules_go_archive",
     ],
 )
 

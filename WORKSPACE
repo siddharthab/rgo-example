@@ -2,13 +2,13 @@ workspace(
     name = "rgo",
 )
 
-http_archive(
+git_repository(
     name = "io_bazel_rules_go",
-    sha256 = "f70c35a8c779bb92f7521ecb5a1c6604e9c3edd431e50b6376d7497abc8ad3c1",
-    url = "https://github.com/bazelbuild/rules_go/releases/download/0.11.0/rules_go-0.11.0.tar.gz",
+    commit = "20b34406b4741ccd5cdb600059e80b4f0f61db09",
+    remote = "https://github.com/bazelbuild/rules_go.git",
 )
 
-load("@io_bazel_rules_go//go:def.bzl", "go_rules_dependencies", "go_register_toolchains")
+load("@io_bazel_rules_go//go:def.bzl", "go_register_toolchains", "go_rules_dependencies")
 
 go_rules_dependencies()
 
@@ -20,7 +20,7 @@ gazelle_dependencies()
 
 git_repository(
     name = "com_grail_rules_r",
-    commit = "ce78de8ecb1e337cebbd44106e476ba989b07664",
+    commit = "cd81fb0e4f28573c11a73a6dd9950d0f2086228e",
     remote = "https://github.com/grailbio/rules_r.git",
 )
 

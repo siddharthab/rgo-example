@@ -7,7 +7,7 @@ To build the package, run
 bazel build R/rgo
 ```
 
-You can then run the R function with (ignore the subsequent segfault for now please).
+You can then run the R function with
 ```
 R_LIBS_USER=$(pwd -P)/bazel-bin/R/rgo/lib Rscript -e 'rgo::hello()'
 ```

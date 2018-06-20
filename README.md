@@ -7,13 +7,14 @@ To build the package, run
 bazel build R/rgo
 ```
 
-You can then run the R function with
+You can then run an R function with
 ```
 R_LIBS_USER=$(pwd -P)/bazel-bin/R/rgo/lib Rscript -e 'rgo::hello()'
 ```
 
-To install the package, run
+To install the package and run all examples, run
 
 ```
 bazel run R/rgo:library
+./examples.R
 ```

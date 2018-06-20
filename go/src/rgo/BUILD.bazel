@@ -1,0 +1,38 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "examples.go",
+        "main.go",
+        "rgo_types.go",
+    ],
+    cgo = True,
+    clinkopts = select({
+        "@io_bazel_rules_go//go/platform:darwin": [
+            "-L /Library/Frameworks/R.framework/Resources/lib -lR",
+        ],
+        "@io_bazel_rules_go//go/platform:linux": [
+            "-L /usr/lib/R/lib -lR",
+        ],
+        "//conditions:default": [],
+    }),
+    copts = select({
+        "@io_bazel_rules_go//go/platform:darwin": [
+            "-I /Library/Frameworks/R.framework/Headers",
+        ],
+        "@io_bazel_rules_go//go/platform:linux": [
+            "-I /usr/share/R/include",
+        ],
+        "//conditions:default": [],
+    }),
+    importpath = "github.com/siddharthab/rgo-example/rgo",
+    visibility = ["//visibility:public"],
+)
+
+go_binary(
+    name = "rgo",
+    embed = [":go_default_library"],
+    linkmode = "c-archive",
+    visibility = ["//visibility:public"],
+)

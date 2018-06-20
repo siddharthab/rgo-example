@@ -7,7 +7,7 @@ r_pkg(
         exclude = ["BUILD.bazel"],
     ),
     cc_deps = [
-        "//go/src/hello:hello.cc",
+        "//go/src/rgo:rgo.cc",
     ],
 )
 

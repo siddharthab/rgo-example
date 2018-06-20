@@ -4,7 +4,13 @@ r_pkg(
     name = "rgo",
     srcs = glob(
         ["**"],
-        exclude = ["BUILD.bazel"],
+        exclude = glob([
+            "BUILD.bazel",
+            "src/Makevars",
+            "src/*.go",
+            "src/*.so",
+            "src/rgo.h",
+        ]),
     ),
     cc_deps = [
         "//go/src/rgo:rgo.cc",

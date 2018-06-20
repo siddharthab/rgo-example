@@ -9,7 +9,13 @@
 #include <R_ext/Rdynload.h>
 #include <Rinternals.h>
 
+#ifdef MAKEVARS
+// Using Makevars
+#include "_cgo_export.h"
+#else
+// Using bazel
 #include "go/src/rgo/rgo.h"
+#endif
 
 static const R_CallMethodDef callMethods[] = {
     {"hello", (DL_FUNC)&hello, 0},       {"paste", (DL_FUNC)&paste, 3},

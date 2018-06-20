@@ -1,0 +1,1 @@
+../../../go/src/rgo/examples.go

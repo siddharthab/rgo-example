@@ -1,0 +1,14 @@
+.PHONY: go
+
+CGO_CFLAGS = $(ALL_CPPFLAGS) -DMAKEVARS
+CGO_LDFLAGS = $(PKG_LIBS) $(SHLIB_LIBADD) $(LIBR)
+
+.PHONY: all clean
+
+go:
+	CGO_CFLAGS="$(CGO_CFLAGS)" CGO_LDFLAGS="$(CGO_LDFLAGS)" go build -o $(SHLIB) -buildmode=c-shared
+
+$(SHLIB): go
+
+clean:
+	rm $(SHLIB) $(SHLIB).h
